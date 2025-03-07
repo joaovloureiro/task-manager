@@ -1,0 +1,15 @@
+<div class="new-task-page" mat-dialog-content>
+  <h2>{{ modalData?.title }}</h2>
+  <p>
+    {{ modalData?.text }}
+  </p>
+</div>
+
+<div mat-dialog-actions class="actions">
+  <button mat-button (click)="close()" class="btn btn-danger">
+    {{ modalData?.buttonCancelLabel || " Cancel" }}
+  </button>
+  <button mat-button mat-dialog-close (click)="close(true)" class="main-button">
+    {{ modalData?.buttonConfirmLabel || "Confirm" }}
+  </button>
+</div>

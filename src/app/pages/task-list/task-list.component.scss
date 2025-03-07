@@ -1,7 +1,29 @@
-.new-task-board{
-    border: 1px solid var(--border-color);
-    margin-top: 2rem;
+.new-task-board {
+  border: 1px solid var(--border-color);
+  margin-top: 2rem;
 
-    padding: 2rem;
-    border-radius: .5rem;
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
+
+.delete-task {
+  padding: 0.5rem;
+  line-height: 0;
+
+  img {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+}
+
+.checked td {
+  background-color: #eef0fc;
+}
+
+table {
+  margin-top: 4rem;
+
+  input[type="checkbox"] {
+    cursor: pointer;
+  }
 }

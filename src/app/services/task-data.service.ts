@@ -1,27 +1,62 @@
-
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject } from 'rxjs';
 
 export interface TaskProps {
-    title: string,
-    description?: string,
-    priority: string,
-    isFinished: boolean;
+  title: string;
+  description?: string;
+  priority: string;
+  isFinished: boolean;
 }
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class TaskDataService {
-    constructor() { }
+  constructor() {}
 
-    private taskListSource = new BehaviorSubject<TaskProps[]>([]);
-    taskList$ = this.taskListSource.asObservable();
+  private taskListSource = new BehaviorSubject<TaskProps[]>([]);
+  taskList$ = this.taskListSource.asObservable();
 
-    addTask(newTask: TaskProps) {
-        this.taskListSource.next([...this.taskListSource.getValue(), newTask]);
+  public addTask(newTask: TaskProps) {
+    const newList = [...this.taskListSource.getValue(), newTask];
+    this.taskListSource.next(newList);
+    this.saveOnLocalStorage(newList);
+  }
+
+  public deleteTask(index: number) {
+    const updatedTasks = this.taskListSource
+      .getValue()
+      .filter((value, i) => i !== index);
+    this.taskListSource.next(updatedTasks);
+    this.saveOnLocalStorage(updatedTasks);
+  }
+
+  public toggleTaskStatus(index: number) {
+    const updatedTasks = this.taskListSource.getValue();
+
+    if (updatedTasks[index]) {
+      updatedTasks[index].isFinished = !updatedTasks[index].isFinished;
     }
+
+    this.taskListSource.next(updatedTasks);
+    this.saveOnLocalStorage(updatedTasks);
+  }
+
+  private storage: Storage = window.localStorage;
+  private saveOnLocalStorage(list: {}) {
+    this.storage.setItem('tasksList', JSON.stringify(list));
+  }
+
+  public checkLocalStorage() {
+    const localStorage = JSON.parse(this.storage.getItem('tasksList')) || null;
+
+    if(localStorage && localStorage.length > 0){
+        this.setTaskList(localStorage);
+    }
+  }
+
+  private setTaskList(taskList: []) {
+    this.taskListSource.next(taskList);
+  }
 }
-
-

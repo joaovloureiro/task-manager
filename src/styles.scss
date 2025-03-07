@@ -32,7 +32,7 @@ $task-manager-theme: mat-light-theme((
 // that you are using.
 @include angular-material-theme($task-manager-theme);
 
-@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "./assets/css/global.scss";
 @import "./assets/css/reset.scss";
 @import "./assets/css/variables.scss";

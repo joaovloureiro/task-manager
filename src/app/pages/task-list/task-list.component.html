@@ -1,40 +1,58 @@
 <section class="custom-page">
-    <div class="custom-page-header mb-4">
-        <div class="custom-page-title-container">
-            <h1 class="custom-page-title">
-                Task List
-            </h1>
+  <div class="custom-page-header mb-4">
+    <div class="custom-page-title-container">
+      <h1 class="custom-page-title">Task List</h1>
 
-            <p class="custom-page-description">Create, manage and delete your tasks here.</p>
-        </div>
-
-        <button class="main-button" (click)="openNewTaskDialog()">
-            Create task
-        </button>
+      <p class="custom-page-description">
+        Create, manage and delete your tasks here.
+      </p>
     </div>
 
+    <button class="main-button" (click)="openNewTaskDialog()">
+      Create task
+    </button>
+  </div>
+
+  <div class="table-container mt-5">
     <table class="table table-hover mt-4">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Title</th>
-                <th>Priority</th>
-                <th>Description</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <ng-container *ngFor="let task of taskList$">
-                <tr>
-                    <td>
-                        <input type="checkbox" [checked]="task.isFinished">
-                    </td>
-                    <td>{{task.title}}</td>
-                    <td>{{task.priority}}</td>
-                    <td>{{task?.description || '-'}}</td>
-                    <td></td>
-                </tr>
-            </ng-container>
-        </tbody>
+      <thead>
+        <tr>
+          <th>Completed</th>
+          <th>Title</th>
+          <th>Priority</th>
+          <th>Description</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let task of taskList$ | async; let index = index">
+          <tr [ngClass]="{ checked: task?.isFinished }">
+            <td>
+              <input
+                (click)="toggleTaskStatus(index)"
+                type="checkbox"
+                [checked]="task.isFinished"
+              />
+            </td>
+            <td>{{ task.title }}</td>
+            <td>
+              <span class="badge {{ task.priority | priorityStatus : true }}">
+                {{ task.priority | priorityStatus }}</span
+              >
+            </td>
+            <td>{{ task?.description || "-" }}</td>
+            <td class="text-right">
+              <button
+                class="btn btn-danger delete-task"
+                title="Delete task"
+                (click)="deleteTask(index)"
+              >
+                <img src="../../../assets/img/trash.svg" alt="Delete task" />
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
     </table>
+  </div>
 </section>

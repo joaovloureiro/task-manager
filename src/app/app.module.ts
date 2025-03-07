@@ -7,10 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ConfirmModalComponent,
   ],
   imports: [
     BrowserModule,
