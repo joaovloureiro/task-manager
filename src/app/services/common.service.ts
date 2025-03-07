@@ -8,7 +8,7 @@ export class CommonService {
 
   constructor(private snackBar: MatSnackBar) { }
 
-  alert(message: string, style: string = 'success', action: string = '', duration: number = 4000){
+  alert(message: string, style: string = 'success', action: string = '', duration: number = 5000){
     this.snackBar.open(message, action, {duration, panelClass: `snackbar-${style}`})
   }
 }

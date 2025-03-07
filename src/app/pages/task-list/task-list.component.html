@@ -4,7 +4,7 @@
       <h1 class="custom-page-title">Task List</h1>
 
       <p class="custom-page-description">
-        Create, manage and delete your tasks here.
+        Create and manage your tasks here.
       </p>
     </div>
 
@@ -47,7 +47,7 @@
                 title="Delete task"
                 (click)="deleteTask(index)"
               >
-                <img src="../../../assets/img/trash.svg" alt="Delete task" />
+                <img [src]="trashIcon" alt="Delete task" />
               </button>
             </td>
           </tr>

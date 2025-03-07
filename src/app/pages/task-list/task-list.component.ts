@@ -12,6 +12,7 @@ import { ConfirmModalComponent } from 'src/app/components/confirm-modal/confirm-
 })
 export class TaskListComponent implements OnInit {
   taskList$ = this.taskDataService.taskList$;
+  trashIcon = '../../../assets/img/trash.svg';
 
   constructor(
     private commonService: CommonService,
@@ -29,6 +30,7 @@ export class TaskListComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
+        this.commonService.alert('The task was added successfully.');
         this.taskDataService.addTask({ ...result, isFinished: false });
       }
     });
@@ -48,8 +50,13 @@ export class TaskListComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
+        this.commonService.alert('The task was deleted successfully.');
         this.taskDataService.deleteTask(index);
       }
     });
+  }
+
+  filter(filter: 'all' | 'completed' | 'incomplete') {
+    this.taskList$ = this.taskDataService.filter(filter);
   }
 }

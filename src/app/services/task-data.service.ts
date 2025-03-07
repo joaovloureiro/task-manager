@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 export interface TaskProps {
   title: string;
@@ -58,5 +59,17 @@ export class TaskDataService {
 
   private setTaskList(taskList: []) {
     this.taskListSource.next(taskList);
+  }
+
+  public filter(filter: 'all' | 'completed' | 'incomplete'): Observable<TaskProps[]>{
+   return this.taskList$.pipe(
+      map(tasks=>{
+        console.log(tasks);
+        
+        if (filter === 'completed') return tasks.filter(task => task.isFinished);
+        if (filter === 'incomplete') return tasks.filter(task => !task.isFinished);
+        return tasks; 
+      })
+    )
   }
 }
