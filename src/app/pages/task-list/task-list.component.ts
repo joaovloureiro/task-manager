@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CommonService } from 'src/app/services/common.service';
 import { NewTaskComponent } from './new-task/new-task.component';
-import { TaskDataService, TaskProps } from 'src/app/services/task-data.service';
+import { TaskDataService } from 'src/app/services/task-data.service';
 import { ConfirmModalComponent } from 'src/app/components/confirm-modal/confirm-modal.component';
 
 @Component({
@@ -13,6 +13,8 @@ import { ConfirmModalComponent } from 'src/app/components/confirm-modal/confirm-
 export class TaskListComponent implements OnInit {
   taskList$ = this.taskDataService.taskList$;
   trashIcon = '../../../assets/img/trash.svg';
+  filterButtonLabel: string = 'Filter';
+  activeFilter: boolean = false;
 
   constructor(
     private commonService: CommonService,
@@ -58,5 +60,7 @@ export class TaskListComponent implements OnInit {
 
   filter(filter: 'all' | 'completed' | 'incomplete') {
     this.taskList$ = this.taskDataService.filter(filter);
+    this.filterButtonLabel = filter ? `Filtered by: ${filter}` : 'Filter';
+    this.activeFilter = filter ? true : false;
   }
 }

@@ -3,9 +3,7 @@
     <div class="custom-page-title-container">
       <h1 class="custom-page-title">Task List</h1>
 
-      <p class="custom-page-description">
-        Create and manage your tasks here.
-      </p>
+      <p class="custom-page-description">Create and manage your tasks here.</p>
     </div>
 
     <button class="main-button" (click)="openNewTaskDialog()">
@@ -14,6 +12,25 @@
   </div>
 
   <div class="table-container mt-5">
+    <div class="dropdown custom-dropdown">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton1"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+        [class.active]="activeFilter"
+      >
+        {{ filterButtonLabel }}
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><button class="dropdown-item" (click)="filter('all')">All</button></li>
+        <li><button class="dropdown-item" (click)="filter('completed')">Completed</button></li>
+        <li><button class="dropdown-item" (click)="filter('incomplete')">Incomplete</button></li>
+        <li><button class="dropdown-item" (click)="filter(null)">Remove filter</button></li>
+      </ul>
+    </div>
+
     <table class="table table-hover mt-4">
       <thead>
         <tr>
