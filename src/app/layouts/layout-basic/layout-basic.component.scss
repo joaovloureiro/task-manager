@@ -35,4 +35,10 @@ header {
 main {
     background-color: var(--color-white);
     min-height: calc(100dvh - #{$header-height});
+
+    &.main-container{
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
 }
+

@@ -5,11 +5,11 @@ import { LayoutBasicComponent } from './layouts/layout-basic/layout-basic.compon
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'client/list',
     pathMatch: 'full'
   },
   {
-    path: 'home',
+    path: 'client',
     component: LayoutBasicComponent,
     loadChildren: () =>
       import('./layouts/layout-basic/layout-basic.module').then(

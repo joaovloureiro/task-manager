@@ -3,12 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TaskListComponent } from './pages/task-list/task-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TaskListComponent
   ],
   imports: [
     BrowserModule,
