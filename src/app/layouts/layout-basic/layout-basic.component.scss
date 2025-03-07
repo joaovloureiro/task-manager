@@ -1,0 +1,38 @@
+$header-height: 70px;
+
+header {
+    background-color: var(--color-secundary);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    height: $header-height;
+
+    .header-content {
+        gap: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        img {
+            height: 30px;
+            width: 150px;
+        }
+
+        a {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--color-white);
+            text-decoration: none;
+            transition: opacity .25s ease-in-out;
+
+            &:hover {
+                opacity: .75;
+            }
+        }
+    }
+}
+
+main {
+    background-color: var(--color-white);
+    min-height: calc(100dvh - #{$header-height});
+}

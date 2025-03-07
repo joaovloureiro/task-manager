@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+    margin-bottom: 0;
+    font-family: Outfit;
+}
+
+.page {
+    .page-title {
+        color: var(--font-title-color);
+        font-size: 2.5rem;
+        font-weight: 700;
+    }
+
+    .page-text {
+        color: var(--font-text-color);
+        font-size: 1.25rem;
+    }
+}
