@@ -100,3 +100,22 @@
     color: var(--color-white);
   }
 }
+
+@media (max-width: 670px) {
+  .modal-panel {
+    min-width: 300px;
+    max-width: 95dvw;
+  }
+}
+
+@media (max-width: 426px) {
+  .custom-page .custom-page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .modal-panel {
+    min-width: 90dvw;
+    max-width: 95dvw;
+  }
+}
